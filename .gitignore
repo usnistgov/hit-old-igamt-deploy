@@ -1,0 +1,4 @@
+applications/igamt.war
+igamt-tool/igamt.war
+igamt-mongo-db/.DS_Store
+igamt-mongo-db/dump/*

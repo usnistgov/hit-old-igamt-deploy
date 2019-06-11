@@ -1,0 +1,33 @@
+image: docker:stable
+
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+
+services:
+  - docker:dind
+
+before_script:
+  - docker info
+  
+build_old_igamt:
+  stage: build
+  script: 
+    - docker build -t old-igamt .
+  
+test_apis:
+  stage: test
+  script:
+    - command_to_test_api.sh
+  when: manual
+
+deploy to hit dev server:
+  stage: deploy
+  script:
+    - use_ansible_to_deploy.sh
+  when: manual
