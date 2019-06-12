@@ -60,6 +60,8 @@ services:
       build: ./common/hit-base-db-mdb
       image: igamt-mysql-db
       container_name: igamt-mysql-db
+      networks:
+        - hl7
       env_file:
           - ./igamt-mysql-db/db/config.env
       ports:
@@ -108,6 +110,11 @@ services:
         - ../data/igamt-tool/app/logs/config:/opt/data/config/
         - ../data/igamt-tool/app/logs/tomcat:/opt/tomcat/logs/
         - ../data/igamt-tool/app/logs/app:/opt/data/logs/
+    depends_on:
+        igamt-mongo-db:
+          condition: service_healthy
+        igamt-mysql-db:
+          condition: service_healthy
     links:
         - igamt-mongo-db:igamt-mongo-db
         - igamt-mysql-db:igamt-mysql-db
@@ -126,8 +133,12 @@ services:
           - "443:443"
       depends_on:
           - igamt-tool
+          - igamt-mongo-db
+          - igamt-mongo-db
       links:
           - igamt-tool:igamt-tool
+          - igamt-mongo-db:igamt-mongo-db
+          - igamt-mysql-db:igamt-mysql-db
 
 networks:
   hl7:
