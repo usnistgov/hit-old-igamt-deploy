@@ -28,7 +28,7 @@ RUN mkdir /docker-entrypoint-initdb.d && \
     mkdir /scripts/pre-init.d && \
     chmod -R 755 /scripts
 
-# ADD files/create-account-tables.sql /docker-entrypoint-initdb.d/create-account-tables.sql
+ADD files/igl.sql /docker-entrypoint-initdb.d/igl.sql
 
 EXPOSE 3306
 

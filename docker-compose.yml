@@ -37,25 +37,38 @@ services:
     #    - ./igamt-mongo-db/config/db.env
     #restart: always
 
-  igamt-mysql-db:
-    image: mysql:5.7
-    container_name: igamt-mysql-db
-    networks:
-      - hl7
-    #restart: always
-    environment:
-      MYSQL_DATABASE: 'igl'
-      MYSQL_USER: 'igluser'
-      MYSQL_PASSWORD: ''
-      MYSQL_ROOT_PASSWORD: 'password'
-    ports:
-      - '3306:3306'
-    expose:
-      - '3306'
-    volumes:
-      - ../data/hl7-igamt/db/logs/:/var/log/mysql/
-      - ../data/hl7-igamt/db/data/:/var/lib/mysql/
+  # igamt-mysql-db:
+  #   image: mysql:5.7
+  #   container_name: igamt-mysql-db
+  #   networks:
+  #     - hl7
+  #   #restart: always
+  #   environment:
+  #     MYSQL_DATABASE: 'igl'
+  #     MYSQL_USER: 'igluser'
+  #     MYSQL_PASSWORD: ''
+  #     MYSQL_ROOT_PASSWORD: 'password'
+  #   ports:
+  #     - '3306:3306'
+  #   expose:
+  #     - '3306'
+  #   volumes:
+  #     - ../data/hl7-igamt/db/logs/:/var/log/mysql/
+  #     - ../data/hl7-igamt/db/data/:/var/lib/mysql/
 
+  igamt-mysql-db:
+      build: ./common/hit-base-db-mdb
+      image: igamt-mysql-db
+      container_name: igamt-mysql-db
+      env_file:
+          - ./igamt-mysql-db/db/config.env
+      healthcheck:
+          test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+          timeout: 20s
+          retries: 10
+      volumes:
+          - ../data/igamt-mysql-db/logs/:/var/log/mysql/
+          - ../data/igamt-mysql-db/data/:/var/lib/mysql/
   # igamt:
   #   build: ./common/old-igamt
   #   image: igamt
