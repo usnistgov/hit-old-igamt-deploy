@@ -134,7 +134,7 @@ services:
       depends_on:
           - igamt-tool
           - igamt-mongo-db
-          - igamt-mongo-db
+          - igamt-mysql-db
       links:
           - igamt-tool:igamt-tool
           - igamt-mongo-db:igamt-mongo-db
