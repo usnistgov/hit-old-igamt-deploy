@@ -17,22 +17,31 @@
 -->
 <!-- The contents of this file will be loaded for each web application -->
 <Context>
-<!-- Default set of monitored resources. If one of these changes, the    -->
-    <!-- web application will be reloaded.                                   -->
+
+    <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
-    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
-    <Resource name="jdbc/igl_jndi"
-              global="jdbc/igl_jndi"
-              auth="Container"
-              type="javax.sql.DataSource"
-              driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://igamt-mysql-db:3306/igl?autoReconnect=true&amp;useSSL=false"
-              username="igluser"
-              password=""
-              maxActive="-1" maxIdle="-1" maxWait="-1"
-              validationQuery="SELECT 1"
-              testOnBorrow="true"
-              validationInterval="60000"
-    />
-    <Resources cachingAllowed="true" cacheMaxSize="100000" />
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+
+    <Manager pathname="" />
+
+
+    <!-- Uncomment this to enable Comet connection tacking (provides events
+         on session expiration as well as webapp lifecycle) -->
+    <!--
+    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+    -->
+
+
+    <Resource name="jdbc/igl_jndi" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000"
+        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+      username="igluser" password="ig4Ever" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/igamt?autoReconnect=true&amp;useSSL=false"/>
+
+    <Resource name="jdbc/igl_mongo" auth="Container"
+        type="com.mongodb.MongoCredential"
+        factory="gov.nist.healthcare.tools.hl7.v2.igamt.lite.web.config.CustomMongoJNDIFactory"
+        host="127.0.0.1" db="igamt" username="" password="" port="27017"/>
+
+
+
 </Context>
