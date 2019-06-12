@@ -64,7 +64,7 @@ services:
           - ./igamt-mysql-db/db/config.env
       ports:
           - '3306:3306'
-        expose:
+      expose:
           - '3306'
       healthcheck:
           test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
