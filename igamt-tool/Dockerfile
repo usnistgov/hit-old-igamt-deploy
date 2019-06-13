@@ -2,8 +2,8 @@
 FROM tomcat-base
 COPY ./config/context.xml /opt/tomcat/conf/
 
-RUN wget --quiet --no-cookies https://hit-2015.nist.gov/wars/igamt.war -O /opt/tomcat/webapps/igamt.war
-#COPY igamt.war /opt/tomcat/webapps/igamt.war
+#RUN wget --quiet --no-cookies https://hit-2015.nist.gov/wars/igamt.war -O /opt/tomcat/webapps/igamt.war
+COPY igamt.war /opt/tomcat/webapps/igamt.war
 #RUN mkdir /opt/data/
 #RUN chmod 766 /opt/data
 #COPY ./config/app-log4j.properties /opt/data/
