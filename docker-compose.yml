@@ -111,10 +111,10 @@ services:
         - ../data/igamt-tool/app/logs/tomcat:/opt/tomcat/logs/
         - ../data/igamt-tool/app/logs/app:/opt/data/logs/
     depends_on:
-        igamt-mongo-db:
-          condition: service_healthy
-        igamt-mysql-db:
-          condition: service_healthy
+        - igamt-mongo-db
+        #  condition: service_healthy
+        - igamt-mysql-db
+        #  condition: service_healthy
     links:
         - igamt-mongo-db:igamt-mongo-db
         - igamt-mysql-db:igamt-mysql-db
