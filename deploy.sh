@@ -5,8 +5,8 @@
 # build and use a newly generated igamt
 docker build -t old-igamt ./common/old-igamt
 docker create -ti --name light-hl7-igamt old-igamt bash
-docker cp light-hl7-igamt:/root/igamt/igamt-lite-controller/target/igamt.war applications/
-cp applications/igamt.war igamt-tool/
+docker cp light-hl7-igamt:/root/igamt/igamt-lite-controller/target/igamt.war igamt-tool/
+#cp applications/igamt.war igamt-tool/
 docker rm -fv light-hl7-igamt
 #################################
 docker build -t tomcat-base ./common/tomcat-base

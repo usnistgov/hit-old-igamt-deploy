@@ -74,40 +74,13 @@ RUN cd /root/hit-core-xml/ && mvn clean
 COPY settings.xml /root/.m2/
 
 RUN cd /root/ && git clone https://github.com/usnistgov/igamt
-# RUN cd /root/igamt && git checkout branch
+RUN cd /root/igamt && git checkout develop
+COPY TimerTaskForPHINVADSValueSetDigger.java /root/igamt/igamt-lite-controller/src/main/java/gov/nist/healthcare/tools/hl7/v2/igamt/lite/web/util/TimerTaskForPHINVADSValueSetDigger.java
+COPY Bootstrap.java /root/igamt/igamt-lite-controller/src/main/java/gov/nist/healthcare/tools/hl7/v2/igamt/lite/web/config/Bootstrap.java
+COPY VocabClient.java /root/igamt/igamt-lite-controller/src/main/java/gov/nist/healthcare/tools/hl7/v2/igamt/lite/web/util/VocabClient.java
 
 RUN cd /root/igamt/igamt-lite-client && npm install
 RUN cd /root/igamt/igamt-lite-client && bower install --allow-root
 RUN cd /root/igamt/igamt-lite-client && grunt build
 
 RUN cd /root/igamt/ && mvn -U clean install -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.test.skip
-
-
-#ENV TOMCAT_VERSION 8.5.41
-#ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
-
-# Get Tomcat
-#RUN wget --quiet --no-cookies http://apache.rediris.es/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tgz && \
-#tar xzvf /tmp/tomcat.tgz -C /opt && \
-#mv /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat && \
-#rm /tmp/tomcat.tgz && \
-#rm -rf /opt/tomcat/webapps/examples && \
-#rm -rf /opt/tomcat/webapps/docs && \
-#rm -rf /opt/tomcat/webapps/ROOT
-
-# Add admin/admin user
-#ADD tomcat-users.xml /opt/tomcat/conf/
-
-#ENV CATALINA_HOME /opt/tomcat
-#ENV PATH $PATH:$CATALINA_HOME/bin
-
-#EXPOSE 8080
-#EXPOSE 8009
-#VOLUME "/opt/tomcat/webapps"
-#WORKDIR /opt/tomcat
-
-#CMD ["cp", "/root/igamt/igamt-lite-controller/target/igamt.war", "/opt/tomcat/webapps/"]
-#RUN ls /opt/tomcat/webapps/
-
-# Launch Tomcat
-# CMD ["/opt/tomcat/bin/catalina.sh", "run"]
