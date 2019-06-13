@@ -1,6 +1,6 @@
 # Pull base image.
 FROM tomcat-base
-#COPY ./config/context.xml /opt/tomcat/conf/
+COPY ./config/context.xml /opt/tomcat/conf/
 
 RUN wget --quiet --no-cookies https://hit-2015.nist.gov/wars/igamt.war -O /opt/tomcat/webapps/igamt.war
 #COPY igamt.war /opt/tomcat/webapps/igamt.war
