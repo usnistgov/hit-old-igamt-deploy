@@ -91,15 +91,17 @@ services:
   #     - igamt-mysql-db
   #     - igamt-mongo-db
 
-    maildev:
-      image: djfarrelly/maildev
-      container_name: igamt-local-mail
-      networks:
-        - hl7
-      ports:
-        - "1080:1080"
-      expose:
-        - "1080"
+  igamt-local-mail:
+    image: zolweb/docker-mailcatcher:latest
+    container_name: igamt-local-mail
+    networks:
+      - hl7
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    expose:
+      - "1080"
+      - "1025"
 
 
   igamt-tool:
