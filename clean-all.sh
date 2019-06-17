@@ -38,3 +38,6 @@ fi
 if [[ $(sudo docker images hl7-reverse-proxy -aq) ]]; then
    sudo docker rmi -f $(sudo docker images hl7-reverse-proxy -aq)
 fi
+
+rm -fr ../data/igamt-*
+rm -fr ../data/hl7-reverse-proxy
