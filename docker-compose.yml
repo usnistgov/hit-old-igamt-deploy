@@ -91,6 +91,17 @@ services:
   #     - igamt-mysql-db
   #     - igamt-mongo-db
 
+    maildev:
+      image: djfarrelly/maildev
+      container_name: igamt-local-mail
+      networks:
+        - hl7
+      ports:
+        - "1080:1080"
+      expose:
+        - "1080"
+
+
   igamt-tool:
     build: ./igamt-tool
     image: igamt-tool
@@ -115,9 +126,11 @@ services:
         #  condition: service_healthy
         - igamt-mysql-db
         #  condition: service_healthy
+        - igamt-local-mail
     links:
         - igamt-mongo-db:igamt-mongo-db
         - igamt-mysql-db:igamt-mysql-db
+        - igamt-local-mail:igamt-local-mail
 
   hl7-reverse-proxy:
       build: ./tools-reverse-proxy
@@ -135,10 +148,12 @@ services:
           - igamt-tool
           - igamt-mongo-db
           - igamt-mysql-db
+          - igamt-local-mail
       links:
           - igamt-tool:igamt-tool
           - igamt-mongo-db:igamt-mongo-db
           - igamt-mysql-db:igamt-mysql-db
+          - igamt-local-mail:igamt-local-mail
 
 networks:
   hl7:
