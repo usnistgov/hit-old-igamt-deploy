@@ -51,8 +51,14 @@ CREATE TABLE `Account` (
 LOCK TABLES `Account` WRITE;
 /*!40000 ALTER TABLE `Account` DISABLE KEYS */;
 INSERT INTO `Account` VALUES (44,'author','jungyubw@nist.gov','NIST','\0','Jungyub Woo','NIST','\0','2408988391','','Software Engineer','woorion');
+INSERT INTO `Account` VALUES (45,'author','tester@email.com','NIST','\0','Tester','NIST','FALSE','2401112222','','Software Engineer','tester');
 /*!40000 ALTER TABLE `Account` ENABLE KEYS */;
 UNLOCK TABLES;
+
+LOCK TABLES `users` WRITE;
+INSERT INTO `Account` VALUES ('tester','65780f54d9a71592fcd7b0046051989577721538230c28319da90ebd7f6d46f2',1,1,1,1);
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `AccountPasswordReset`
