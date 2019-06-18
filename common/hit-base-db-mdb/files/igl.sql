@@ -51,6 +51,7 @@ CREATE TABLE `Account` (
 LOCK TABLES `Account` WRITE;
 /*!40000 ALTER TABLE `Account` DISABLE KEYS */;
 INSERT INTO `Account` VALUES (44,'author','jungyubw@nist.gov','NIST','\0','Jungyub Woo','NIST','\0','2408988391','','Software Engineer','woorion');
+INSERT INTO `Account` VALUES (45,'author','tester@email.com','NIST','\0','Tester','NIST','FALSE','2401112222','','Software Engineer','tester');
 /*!40000 ALTER TABLE `Account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,6 +83,7 @@ CREATE TABLE `AccountPasswordReset` (
 LOCK TABLES `AccountPasswordReset` WRITE;
 /*!40000 ALTER TABLE `AccountPasswordReset` DISABLE KEYS */;
 INSERT INTO `AccountPasswordReset` VALUES (1,'aGFmZm8yMDE1NDc1MjI1',6,'2015-05-05 11:15:26','woorion');
+INSERT INTO `AccountPasswordReset` VALUES (2,'aGFmZm8yMDE1NDc1MjI1',6,'2015-05-05 11:15:26','tester');
 /*!40000 ALTER TABLE `AccountPasswordReset` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,6 +141,7 @@ CREATE TABLE `authorities` (
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
 INSERT INTO `authorities` VALUES ('woorion','author'),('woorion','user'),('woorion','admin');
+INSERT INTO `authorities` VALUES ('tester','author'),('tester','user'),('tester','admin');
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,6 +162,10 @@ CREATE TABLE `users` (
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `users` WRITE;
+INSERT INTO `users` VALUES ('tester','65780f54d9a71592fcd7b0046051989577721538230c28319da90ebd7f6d46f2',1,1,1,1);
+UNLOCK TABLES;
 
 --
 -- Dumping data for table `users`
