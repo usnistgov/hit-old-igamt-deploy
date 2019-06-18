@@ -83,7 +83,7 @@ CREATE TABLE `AccountPasswordReset` (
 LOCK TABLES `AccountPasswordReset` WRITE;
 /*!40000 ALTER TABLE `AccountPasswordReset` DISABLE KEYS */;
 INSERT INTO `AccountPasswordReset` VALUES (1,'aGFmZm8yMDE1NDc1MjI1',6,'2015-05-05 11:15:26','woorion');
-INSERT INTO `AccountPasswordReset` VALUES (2,'aGFmZm8yMDE1NDc1MjI1',6,'2015-05-05 11:15:26','tester');
+INSERT INTO `AccountPasswordReset` VALUES (2,'F2JmZm8yMSS1NDc1kdjd',6,'2015-05-05 11:15:26','tester');
 /*!40000 ALTER TABLE `AccountPasswordReset` ENABLE KEYS */;
 UNLOCK TABLES;
 
