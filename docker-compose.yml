@@ -67,16 +67,16 @@ services:
       env_file:
           - ./igamt-mysql-db/db/config.env
       ports:
-          - '3306:3306'
-      expose:
-          - '3306'
+          - "3306"
+      # expose:
+      #     - '3306'
       healthcheck:
           test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
           timeout: 20s
           retries: 10
       volumes:
-          - ../data/igamt-mysql-db/logs/:/var/log/mysql/
-          - ../data/igamt-mysql-db/data/:/var/lib/mysql/
+          - ../../data/igamt-mysql-db/logs/:/var/log/mysql/
+          - ../../data/igamt-mysql-db/data/:/var/lib/mysql/
   # igamt:
   #   build: ./common/old-igamt
   #   image: igamt
