@@ -40,7 +40,7 @@
     <Resource name="jdbc/igl_mongo" auth="Container"
         type="com.mongodb.MongoCredential"
         factory="gov.nist.healthcare.tools.hl7.v2.igamt.lite.web.config.CustomMongoJNDIFactory"
-        host="127.0.0.1" db="igamt" username="" password="" port="27017"/>
+        host="igamt-mongo-db" db="igamt" username="" password="" port="27017"/>
 
 
 
