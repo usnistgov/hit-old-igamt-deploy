@@ -75,6 +75,7 @@ COPY settings.xml /root/.m2/
 
 RUN cd /root/ && git clone https://github.com/usnistgov/igamt
 RUN cd /root/igamt && git checkout develop
+COPY igl-mongo.properties /igamt/igamt-lite-controller/src/main/resources/igl-mongo.properties
 COPY app-web-config.properties /root/igamt/igamt-lite-controller/src/main/resources/app-web-config.properties
 COPY TimerTaskForPHINVADSValueSetDigger.java /root/igamt/igamt-lite-controller/src/main/java/gov/nist/healthcare/tools/hl7/v2/igamt/lite/web/util/TimerTaskForPHINVADSValueSetDigger.java
 COPY Bootstrap.java /root/igamt/igamt-lite-controller/src/main/java/gov/nist/healthcare/tools/hl7/v2/igamt/lite/web/config/Bootstrap.java
