@@ -17,8 +17,8 @@ services:
   igamt-mongo-db:
     build: ./igamt-mongo-db
     image: igamt-mongo-db
-    networks:
-      - hl7
+    #networks:
+    #  - hl7
     container_name: igamt-mongo-db
     environment:
       MONGO_INITDB_DATABASE: igamt
@@ -62,8 +62,8 @@ services:
       build: ./common/hit-base-db-mdb
       image: igamt-mysql-db
       container_name: igamt-mysql-db
-      networks:
-        - hl7
+      #networks:
+      #  - hl7
       env_file:
           - ./igamt-mysql-db/db/config.env
       ports:
@@ -96,8 +96,8 @@ services:
   igamt-local-mail:
     image: zolweb/docker-mailcatcher:latest
     container_name: igamt-local-mail
-    networks:
-      - hl7
+    #networks:
+    #  - hl7
     ports:
       - "1080:1080"
       - "1025:1025"
@@ -110,8 +110,8 @@ services:
     build: ./igamt-tool
     image: igamt-tool
     container_name: igamt-tool
-    networks:
-         - hl7
+    #networks:
+    #     - hl7
     ports:
       - '8080:8080'
       - '8009:8009'
@@ -138,8 +138,8 @@ services:
 
   hl7-reverse-proxy:
       build: ./tools-reverse-proxy
-      networks:
-        - hl7
+      #networks:
+      #  - hl7
       image: hl7-reverse-proxy
       container_name: hl7-reverse-proxy
       volumes:
@@ -159,5 +159,5 @@ services:
           - igamt-mysql-db:igamt-mysql-db
           - igamt-local-mail:igamt-local-mail
 
-networks:
-  hl7:
+#networks:
+#  hl7:
