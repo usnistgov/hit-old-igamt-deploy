@@ -26,6 +26,15 @@ RUN apt-get update && \
 	update-ca-certificates -f && \
 	rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && \
+  wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add - && \
+  echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse" |  tee /etc/apt/sources.list.d/mongodb-org-4.2.list && \
+  apt-get update && \
+  apt-get install -y mongodb-org
+
+RUN systemctl enable mongod
+
+
 
 # Setup JAVA_HOME, this is useful for docker commandline
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64

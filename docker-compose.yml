@@ -121,10 +121,10 @@ services:
       - '8080:8080'
       - '8009:8009'
       #- '172.22.14.218:27017:27017'
-      - target: 27017
-        published: 27017
-        protocol: tcp
-        mode: host
+      # - target: 27017
+      #   published: 27017
+      #   protocol: tcp
+      #   mode: host
     expose:
         - "8009"
         - "8080"

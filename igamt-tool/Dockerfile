@@ -2,6 +2,22 @@
 FROM tomcat-base
 COPY ./config/context.xml /opt/tomcat/conf/
 
+VOLUME /data/db
+
+CMD ["/usr/bin/mongod"]
+# RUN systemctl start mongod
+
+#CMD ["usr/bin/mongod", "--smallfiles"]
+#CMD ["usr/bin/mongod"]
+
+COPY ./import.sh /docker-entrypoint-initdb.d/import.sh
+RUN ["chmod", "+x", "/docker-entrypoint-initdb.d/import.sh"]
+RUN ["mkdir", "/tmp/dump/"]
+RUN wget --no-check-certificate https://hit-2015.nist.gov/wars/old_igamt_dump.zip -O /tmp/dump.zip
+RUN unzip /tmp/dump.zip -d /tmp/
+
+#RUN ["/docker-entrypoint-initdb.d/import.sh"]
+
 #RUN wget --quiet --no-cookies https://hit-2015.nist.gov/wars/igamt.war -O /opt/tomcat/webapps/igamt.war
 COPY igamt.war /opt/tomcat/webapps/igamt.war
 #RUN mkdir /opt/data/
